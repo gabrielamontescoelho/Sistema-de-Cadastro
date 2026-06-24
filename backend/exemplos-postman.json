@@ -1,0 +1,60 @@
+{
+  "descricao": "Exemplos de JSON para testar a API StyleStock no Postman ou Insomnia",
+  "baseUrl": "http://localhost:8080",
+
+  "exemplos": {
+    "listarTodas": {
+      "metodo": "GET",
+      "url": "http://localhost:8080/roupas"
+    },
+
+    "buscarPorId": {
+      "metodo": "GET",
+      "url": "http://localhost:8080/roupas/1"
+    },
+
+    "buscarPorNome": {
+      "metodo": "GET",
+      "url": "http://localhost:8080/roupas/buscar?nome=camiseta"
+    },
+
+    "cadastrarRoupa": {
+      "metodo": "POST",
+      "url": "http://localhost:8080/roupas",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "nome": "Blusa de Trico Creme",
+        "categoria": "Camiseta",
+        "tamanho": "G",
+        "cor": "Creme",
+        "preco": 89.90,
+        "quantidade": 14,
+        "descricao": "Blusa de trico macia para dias mais frios."
+      }
+    },
+
+    "editarRoupa": {
+      "metodo": "PUT",
+      "url": "http://localhost:8080/roupas/1",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "nome": "Camiseta Basica Rosa Premium",
+        "categoria": "Camiseta",
+        "tamanho": "M",
+        "cor": "Rosa",
+        "preco": 54.90,
+        "quantidade": 30,
+        "descricao": "Camiseta premium de algodao organico."
+      }
+    },
+
+    "excluirRoupa": {
+      "metodo": "DELETE",
+      "url": "http://localhost:8080/roupas/1"
+    }
+  }
+}
