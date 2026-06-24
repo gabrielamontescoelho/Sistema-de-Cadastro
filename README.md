@@ -1,252 +1,250 @@
-# StyleStock — Sistema de Cadastro de Roupas 2026
+# StyleStock — Sistema de Cadastro de Roupas
 
-Projeto didatico full-stack para cadastro e controle de estoque de roupas de uma loja.
+Projeto desenvolvido para a Atividade Prática – Sistema de Cadastro de Produtos 2026.
 
-- **Backend:** Spring Boot + Java + H2
-- **Frontend:** React + Vite + Axios + React Router
+O StyleStock é um sistema de cadastro e controle de estoque de roupas, com frontend em React e backend em Spring Boot. O sistema permite cadastrar, listar, buscar, editar e excluir roupas, integrando a interface web com uma API REST e banco de dados H2.
 
----
+## Tecnologias utilizadas
+
+### Frontend
+
+* React
+* Vite
+* TypeScript
+* Axios
+* Tailwind CSS
+* TanStack Router
+
+### Backend
+
+* Java 17
+* Spring Boot
+* Spring Web
+* Spring Data JPA
+* H2 Database
+* Maven
+
+## Funcionalidades
+
+* Cadastro de roupas
+* Listagem de roupas cadastradas
+* Busca de roupas por nome
+* Edição de roupas
+* Exclusão de roupas
+* Integração entre frontend e backend com Axios
+* API REST organizada em camadas
+* Banco de dados H2 com dados iniciais
+
+## Campos da roupa
+
+Cada roupa possui:
+
+* id
+* nome
+* categoria
+* tamanho
+* cor
+* público
+* preço
+* quantidade
+* descrição
 
 ## Estrutura do projeto
 
-```
-Sistema Cadastro trabalho/
-├── backend/                          ← API REST (Spring Boot)
-│   ├── pom.xml                       ← Dependencias Maven
-│   ├── exemplos-postman.json         ← JSONs para testar no Postman
-│   └── src/main/
-│       ├── java/com/stylestock/
-│       │   ├── StyleStockApplication.java   ← Classe principal
-│       │   ├── config/
-│       │   │   └── CorsConfig.java          ← Permite acesso do React
-│       │   ├── controller/
-│       │   │   └── RoupaController.java     ← Endpoints REST
-│       │   ├── entity/
-│       │   │   └── Roupa.java               ← Modelo do banco
-│       │   ├── repository/
-│       │   │   └── RoupaRepository.java     ← Acesso ao banco
-│       │   └── service/
-│       │       └── RoupaService.java        ← Regras de negocio
-│       └── resources/
-│           ├── application.properties       ← Configuracoes
-│           └── data.sql                     ← Dados iniciais
+```txt
+Sistema Cadastro trabalho
+├── backend
+│   └── API Spring Boot
 │
-└── frontend/                         ← Interface (React)
-    ├── package.json
-    ├── vite.config.js
-    ├── index.html
-    └── src/
-        ├── main.jsx                  ← Entrada do React
-        ├── App.jsx                   ← Componente principal
-        ├── App.css                   ← Estilos globais
-        ├── index.css                 ← Reset CSS
-        ├── components/
-        │   ├── Navbar.jsx            ← Menu de navegacao
-        │   └── Navbar.css
-        ├── pages/
-        │   ├── Home.jsx              ← Pagina inicial
-        │   ├── ListagemRoupas.jsx    ← Lista todas as roupas
-        │   ├── CadastroRoupa.jsx     ← Formulario de cadastro
-        │   ├── EdicaoRoupa.jsx       ← Formulario de edicao
-        │   └── BuscaRoupa.jsx        ← Busca por nome ou ID
-        ├── routes/
-        │   └── AppRoutes.jsx         ← Rotas do React Router
-        └── services/
-            ├── api.js                ← Configuracao do Axios
-            └── roupasService.js      ← Funcoes que chamam a API
+├── frontend
+│   └── Interface React
+│
+└── README.md
 ```
 
----
+## Como rodar o backend
 
-## Pre-requisitos
-
-Instale antes de comecar:
-
-| Ferramenta | Versao minima | Para que serve |
-|------------|---------------|----------------|
-| **Java JDK** | 17 | Rodar o backend Spring Boot |
-| **Maven** | 3.8+ | Gerenciar dependencias do backend |
-| **Node.js** | 18+ | Rodar o frontend React |
-| **npm** | 9+ | Instalar pacotes do frontend |
-
-Verifique se estao instalados:
+Acesse a pasta do backend:
 
 ```bash
-java -version
-mvn -version
-node -v
-npm -v
+cd "C:\Users\serratec\Documents\IA\Sistema Cadastro trabalho\backend"
 ```
 
-> **Dica:** Se o comando `mvn` nao for reconhecido, voce tambem pode abrir a pasta `backend` no **IntelliJ IDEA**, **Eclipse** ou **VS Code** (com extensao Spring Boot) e executar a classe `StyleStockApplication.java` diretamente pelo botao Run.
+Execute a aplicação Spring Boot pelo VS Code, IntelliJ ou Eclipse, rodando a classe:
 
----
+```txt
+StyleStockApplication.java
+```
 
-## Como rodar o BACKEND
+Quando iniciar corretamente, o backend ficará disponível em:
 
-### Passo 1 — Entre na pasta do backend
+```txt
+http://localhost:8080
+```
+
+Endpoint principal:
+
+```txt
+http://localhost:8080/roupas
+```
+
+Console do banco H2:
+
+```txt
+http://localhost:8080/h2-console
+```
+
+## Como rodar o frontend
+
+Acesse a pasta do frontend:
 
 ```bash
-cd backend
+cd "C:\Users\serratec\Documents\IA\Sistema Cadastro trabalho\frontend"
 ```
 
-### Passo 2 — Baixe as dependencias e inicie o servidor
-
-```bash
-mvn spring-boot:run
-```
-
-Aguarde aparecer no terminal algo como:
-
-```
-Started StyleStockApplication in X seconds
-```
-
-O backend estara rodando em: **http://localhost:8080**
-
-### Passo 3 — Teste no navegador
-
-Abra: **http://localhost:8080/roupas**
-
-Voce deve ver um JSON com 8 roupas de exemplo.
-
-### Console do banco H2 (opcional)
-
-- URL: **http://localhost:8080/h2-console**
-- JDBC URL: `jdbc:h2:mem:stylestockdb`
-- Usuario: `sa`
-- Senha: *(deixe em branco)*
-
----
-
-## Como rodar o FRONTEND
-
-Abra um **novo terminal** (mantenha o backend rodando).
-
-### Passo 1 — Entre na pasta do frontend
-
-```bash
-cd frontend
-```
-
-### Passo 2 — Instale as dependencias (so na primeira vez)
+Instale as dependências:
 
 ```bash
 npm install
 ```
 
-### Passo 3 — Inicie o servidor de desenvolvimento
+Rode o projeto:
 
 ```bash
 npm run dev
 ```
 
-O frontend estara em: **http://localhost:5173**
+O frontend ficará disponível em:
 
----
+```txt
+http://localhost:5173
+```
 
-## Endpoints da API REST
+## Endpoints da API
 
-| Metodo | URL | Descricao |
-|--------|-----|-----------|
-| GET | `/roupas` | Listar todas as roupas |
-| GET | `/roupas/{id}` | Buscar roupa por ID |
-| GET | `/roupas/buscar?nome=camiseta` | Buscar por nome |
-| POST | `/roupas` | Cadastrar nova roupa |
-| PUT | `/roupas/{id}` | Editar roupa existente |
-| DELETE | `/roupas/{id}` | Excluir roupa |
+### Listar todas as roupas
 
----
+```txt
+GET /roupas
+```
 
-## Exemplos JSON para Postman / Insomnia
+### Buscar roupa por ID
 
-Arquivo completo: `backend/exemplos-postman.json`
+```txt
+GET /roupas/{id}
+```
 
-### Cadastrar roupa (POST /roupas)
+### Buscar roupa por nome
+
+```txt
+GET /roupas/buscar?nome=camisa
+```
+
+### Cadastrar roupa
+
+```txt
+POST /roupas
+```
+
+Exemplo de JSON:
 
 ```json
 {
-  "nome": "Blusa de Trico Creme",
-  "categoria": "Camiseta",
-  "tamanho": "G",
-  "cor": "Creme",
-  "preco": 89.90,
-  "quantidade": 14,
-  "descricao": "Blusa de trico macia para dias mais frios."
+  "nome": "Tenis Casual Branco",
+  "categoria": "Tenis",
+  "tamanho": "38",
+  "cor": "Branco",
+  "publico": "Unissex",
+  "preco": 199.90,
+  "quantidade": 18,
+  "descricao": "Tenis casual confortavel para o dia a dia."
 }
 ```
 
-### Editar roupa (PUT /roupas/1)
+### Editar roupa
+
+```txt
+PUT /roupas/{id}
+```
+
+Exemplo de JSON:
 
 ```json
 {
-  "nome": "Camiseta Basica Rosa Premium",
-  "categoria": "Camiseta",
+  "nome": "Camisa Social Branca Premium",
+  "categoria": "Camisas",
   "tamanho": "M",
-  "cor": "Rosa",
-  "preco": 54.90,
-  "quantidade": 30,
-  "descricao": "Camiseta premium de algodao organico."
+  "cor": "Branco",
+  "publico": "Masculino",
+  "preco": 149.90,
+  "quantidade": 12,
+  "descricao": "Camisa social elegante para trabalho e eventos."
 }
 ```
 
----
+### Excluir roupa
 
-## Como testar a integracao
-
-1. Inicie o **backend** (`mvn spring-boot:run` na pasta `backend`)
-2. Inicie o **frontend** (`npm run dev` na pasta `frontend`)
-3. Acesse **http://localhost:5173**
-4. Teste cada funcionalidade:
-
-| Acao | O que verificar |
-|------|-----------------|
-| Pagina **Roupas** | Deve listar 8 roupas de exemplo |
-| **Cadastrar** | Preencha o formulario e salve — a roupa aparece na listagem |
-| **Editar** | Clique em Editar num card, altere dados e salve |
-| **Excluir** | Clique em Excluir e confirme — o card some |
-| **Buscar** | Digite "camiseta" ou "1" e veja o resultado |
-
-Se aparecer erro de conexao, confirme que o backend esta rodando na porta 8080.
-
----
-
-## Rotas do Frontend
-
-| Rota | Pagina |
-|------|--------|
-| `/` | Pagina inicial |
-| `/roupas` | Listagem de roupas |
-| `/cadastro` | Cadastro de roupa |
-| `/editar/:id` | Edicao de roupa |
-| `/buscar` | Busca por nome ou ID |
-
----
-
-## Camadas do Backend (explicacao)
-
-```
-Controller  →  recebe requisicoes HTTP (GET, POST, PUT, DELETE)
-     ↓
-Service     →  contem a logica de negocio
-     ↓
-Repository  →  acessa o banco de dados
-     ↓
-Entity      →  representa a tabela "roupas" no banco
+```txt
+DELETE /roupas/{id}
 ```
 
----
+## Integração frontend e backend
 
-## Tecnologias utilizadas
+O frontend utiliza Axios para consumir a API do backend.
 
-**Backend:** Spring Boot 3, Spring Data JPA, H2 Database, Maven
+Arquivo principal da integração:
 
-**Frontend:** React 18, Vite, Axios, React Router DOM 6
+```txt
+frontend/src/lib/api.ts
+```
 
----
+A URL base configurada é:
 
-## Autora / Atividade
+```txt
+http://localhost:8080
+```
 
-Projeto desenvolvido como atividade pratica de integracao frontend + backend.
+O backend possui configuração de CORS permitindo requisições do frontend em:
 
-**StyleStock © 2026**
+```txt
+http://localhost:5173
+```
+
+## Organização do backend
+
+O backend foi organizado em camadas:
+
+```txt
+controller
+service
+repository
+entity
+config
+```
+
+* `RoupaController`: responsável pelos endpoints da API.
+* `RoupaService`: responsável pelas regras e operações do sistema.
+* `RoupaRepository`: responsável pela comunicação com o banco de dados.
+* `Roupa`: entidade que representa a tabela de roupas.
+* `CorsConfig`: configuração para permitir integração com o frontend.
+
+## Organização do frontend
+
+O frontend possui rotas e componentes para as telas principais:
+
+```txt
+src/routes/index.tsx
+src/routes/roupas.tsx
+src/routes/cadastrar.tsx
+src/routes/editar.$id.tsx
+src/routes/buscar.tsx
+src/components/RoupaForm.tsx
+src/lib/api.ts
+src/lib/types.ts
+```
+
+## Observação
+
+O sistema utiliza banco H2 em memória. Por isso, os dados são recriados ao reiniciar o backend, usando o arquivo `data.sql`.
+
+Projeto desenvolvido para atividade prática de integração entre frontend React e backend Spring Boot.
