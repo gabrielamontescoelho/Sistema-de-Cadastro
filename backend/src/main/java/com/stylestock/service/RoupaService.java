@@ -38,6 +38,7 @@ public class RoupaService {
             roupa.setCategoria(roupaAtualizada.getCategoria());
             roupa.setTamanho(roupaAtualizada.getTamanho());
             roupa.setCor(roupaAtualizada.getCor());
+            roupa.setPublico(roupaAtualizada.getPublico());
             roupa.setPreco(roupaAtualizada.getPreco());
             roupa.setQuantidade(roupaAtualizada.getQuantidade());
             roupa.setDescricao(roupaAtualizada.getDescricao());

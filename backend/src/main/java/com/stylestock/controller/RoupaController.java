@@ -5,6 +5,7 @@ import com.stylestock.service.RoupaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -36,13 +37,13 @@ public class RoupaController {
     }
 
     @PostMapping
-    public ResponseEntity<Roupa> cadastrar(@RequestBody Roupa roupa) {
+    public ResponseEntity<Roupa> cadastrar(@Valid @RequestBody Roupa roupa) {
         Roupa novaRoupa = roupaService.cadastrar(roupa);
         return ResponseEntity.status(HttpStatus.CREATED).body(novaRoupa);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Roupa> atualizar(@PathVariable Long id, @RequestBody Roupa roupa) {
+    public ResponseEntity<Roupa> atualizar(@Valid @PathVariable Long id, @RequestBody Roupa roupa) {
         return roupaService.atualizar(id, roupa)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

@@ -126,7 +126,7 @@ function HomePage() {
           <Feature
             Icon={Search}
             title="Busca precisa"
-            desc="Filtre por qualquer atributo"
+            desc="Busque por nome"
             to="/buscar"
           />
           <Feature

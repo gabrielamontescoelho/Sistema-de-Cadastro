@@ -4,6 +4,7 @@ export type Roupa = {
   categoria: string;
   tamanho: string;
   cor: string;
+  publico: string;
   preco: number;
   quantidade: number;
   descricao: string;
@@ -23,3 +24,5 @@ export const CATEGORIAS = [
 ] as const;
 
 export const TAMANHOS = ["PP", "P", "M", "G", "GG", "36", "38", "40", "42", "44"] as const;
+
+export const PUBLICOS = ["Masculino", "Feminino", "Unissex"] as const;

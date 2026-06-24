@@ -26,16 +26,15 @@ const blank: Roupa = {
   categoria: "",
   tamanho: "",
   cor: "",
+  publico: "",
   preco: 0,
   quantidade: 0,
   descricao: "",
 };
 
 export function RoupaForm({ initial, onSubmit, submitting, submitLabel }: Props) {
-  const [form, setForm] = useState<Roupa>(initial ?? blank);
-  // "publico" não existe no backend — guardado como prefixo na descricao opcionalmente.
-  // Aqui exibimos só visualmente como um select extra (estado local).
-  const [publico, setPublico] = useState<string>("Unissex");
+  const [form, setForm] = useState<Roupa>({ ...blank, ...initial });
+  
 
   const update = <K extends keyof Roupa>(key: K, value: Roupa[K]) =>
     setForm((f) => ({ ...f, [key]: value }));
@@ -74,12 +73,16 @@ export function RoupaForm({ initial, onSubmit, submitting, submitLabel }: Props)
 
         <Field Icon={Users} label="Público">
           <select
-            value={publico}
-            onChange={(e) => setPublico(e.target.value)}
+            required
+            value={form.publico}
+            onChange={(e) => update("publico", e.target.value)}
             className={inputCls}
           >
+            <option value="">Selecione…</option>
             {PUBLICOS.map((p) => (
-              <option key={p}>{p}</option>
+              <option key={p} value={p}>
+                {p}
+              </option>
             ))}
           </select>
         </Field>
@@ -150,7 +153,7 @@ export function RoupaForm({ initial, onSubmit, submitting, submitLabel }: Props)
 
       <div className="flex items-center justify-between border-t border-border pt-5">
         <span className="text-xs text-muted-foreground">
-          {publico} · {form.categoria || "—"}
+          {form.publico || "—"} · {form.categoria || "—"}
         </span>
         <div className="flex items-center gap-3">
           <button
